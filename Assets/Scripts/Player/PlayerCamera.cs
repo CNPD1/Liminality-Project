@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public static float sensitivity = 2;
+    public float sensitivity;
 
     [SerializeField] GameObject player;
 
@@ -17,10 +17,19 @@ public class PlayerCamera : MonoBehaviour
 
     void Awake()
     {
+        //Sensitivity
+        if(!PlayerPrefs.HasKey("Sensitivity"))
+        {
+            PlayerPrefs.SetFloat("Sensitivity", 1);
+        }
+
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         player = FindObjectOfType<PlayerMovement>().gameObject;
+        enemyBehaviour = FindObjectOfType<EnemyBehaviour>();
         glitchFx = GetComponent<AnalogGlitch>();
 
         if(enemyBehaviour != null)
@@ -51,5 +60,11 @@ public class PlayerCamera : MonoBehaviour
     {
         glitchFx.enabled = true;
         gameObject.GetComponent<PlayerCamera>().enabled = false;
+    }
+
+    public void UpdateValue(float newSens)
+    {
+        PlayerPrefs.SetFloat("Sensitivity", newSens);
+        sensitivity = newSens;
     }
 }

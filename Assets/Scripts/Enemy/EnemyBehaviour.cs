@@ -45,7 +45,9 @@ public class EnemyBehaviour : MonoBehaviour
         navAgent= GetComponent<NavMeshAgent>();
         state = EnemyState.Follow;
         detectionHitbox.radius = chaseRange * (1/transform.localScale.x);
-        transform.position = player.transform.position + (Vector3.back * 500);
+        transform.position = player.transform.position + (Vector3.back * 300);
+
+        navAgent.radius = 0.01f;
 
         cameraBehaviour = FindObjectOfType<CameraBehaviour>();
 
@@ -62,7 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if(state != EnemyState.Hiding)
         {
-            navAgent.destination = player.transform.position;
+            navAgent.destination = GetPlayerLocation();
         }
 
         if(enemyDetection.enemyDetected)
@@ -129,9 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector2 randVector2 = Random.insideUnitCircle.normalized;
         Vector3 dir = new Vector3(randVector2.x, 0, randVector2.y);
-        float distance = Random.value * 100 + 200;
-
-        print(distance);
+        float distance = Random.value * 100 + 100;
 
         Vector3 randPos = transform.position + (dir * distance);
 
@@ -143,14 +143,21 @@ public class EnemyBehaviour : MonoBehaviour
         navAgent.speed = 20;
     }
 
+    Vector3 GetPlayerLocation()
+    {
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(player.transform.position, out navHit, 10f, NavMesh.AllAreas);
+
+        return navHit.position;
+    }
+
     void StateHandler()
     {
         switch (state)
         {
             case EnemyState.Hidden:
                 timeHidden += Time.deltaTime;
-
-                print(timeHidden);
 
                 if(timeHidden >= hidingTime)
                 {

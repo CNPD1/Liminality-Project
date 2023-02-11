@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    //Constants
-    [SerializeField] float maxStamina;
-    [SerializeField] float staminaDrain;
-
     [SerializeField] float walkSpeed;
     [SerializeField] float friction;
-
+    
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
     [SerializeField] LayerMask groundLayer;
+
+    [Header("Sound")]
+    [SerializeField] AudioSource footstepSFX;
 
     bool isGrounded;
 
@@ -24,9 +23,11 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        footstepSFX = gameObject.transform.Find("Footsteps").gameObject.GetComponent<AudioSource>();
+
         rb.freezeRotation= true;
     }
 
@@ -43,6 +44,16 @@ public class PlayerMovement : MonoBehaviour
     {
         SpeedControl();
         MovePlayer();
+
+        if(Mathf.Abs(input.magnitude) > 0)
+        {
+            if (footstepSFX.isPlaying) { return; }
+            footstepSFX.Play();
+        }
+        else
+        {
+            footstepSFX.Stop();
+        }
     }
 
     void CheckGround()

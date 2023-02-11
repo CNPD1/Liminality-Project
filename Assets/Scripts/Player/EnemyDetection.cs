@@ -10,6 +10,11 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] LayerMask ignoreRaycastLayer;
     public bool enemyDetected;
 
+    void Awake()
+    {
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+    }
+
     void Update()
     {
         Vector3 relativeNormalizedPos = (enemy.transform.position - cameraTransform.position).normalized;
