@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
         //Sensitivity
         if(!PlayerPrefs.HasKey("Sensitivity"))
         {
-            PlayerPrefs.SetFloat("Sensitivity", 1);
+            PlayerPrefs.SetFloat("Sensitivity", 0.5f);
         }
 
         sensitivity = PlayerPrefs.GetFloat("Sensitivity");
