@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 8
-  swayMult: 2
+  swayMult: 0.5
 --- !u!114 &494665795
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,11 +5,11 @@ using UnityEngine;
 public class Loop : MonoBehaviour
 {
     AudioSource[] audioSources;
-    int currentSource;
+    int currentSource = 1;
 
     [SerializeField] float stopTime;
 
-    void Start()
+    void Awake()
     {
         audioSources = GetComponentsInChildren<AudioSource>();
 
@@ -27,8 +27,9 @@ public class Loop : MonoBehaviour
     IEnumerator Play()
     {
         currentSource = 1 - currentSource;
-
+        print(currentSource);
         audioSources[currentSource].Play();
+        print(audioSources[currentSource].isPlaying);
         yield return new WaitForSecondsRealtime(stopTime);
         StartCoroutine("Play");
     }
