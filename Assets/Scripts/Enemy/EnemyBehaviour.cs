@@ -43,7 +43,8 @@ public class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         navAgent= GetComponent<NavMeshAgent>();
-        state = EnemyState.Follow;
+        state = EnemyState.Hidden;
+        navAgent.speed = 0;
         detectionHitbox.radius = chaseRange * (1/transform.localScale.x);
         transform.position = player.transform.position + (Vector3.back * 300);
 

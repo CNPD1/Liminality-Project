@@ -20,6 +20,8 @@ public class CameraBehaviour : MonoBehaviour
     float flashRange = 20;
     float flashCooldown = 1f;
 
+    [SerializeField] GameObject cameraBar;
+
     AudioSource sfx;
 
     [Header("Player")]
@@ -77,6 +79,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         sfx.Play();
         flashing = true;
+        cameraBar.SetActive(true);
         flash.intensity = flashIntensity;
 
         yield return new WaitForSeconds(0.1f);
