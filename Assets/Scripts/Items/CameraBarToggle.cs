@@ -7,6 +7,8 @@ public class CameraBarToggle : MonoBehaviour
 {
     float DURATION = 1.8f;
 
+    EnemyBehaviour enemyBehaviour;
+
     RectTransform barTransform;
     RawImage cameraIcon;
 
@@ -15,10 +17,14 @@ public class CameraBarToggle : MonoBehaviour
 
     void Awake()
     {
+        enemyBehaviour = FindObjectOfType<EnemyBehaviour>();
+
         barTransform = transform.Find("Bar").gameObject.GetComponent<RectTransform>();
         cameraIcon = GetComponentInChildren<RawImage>();
 
         maxWidth = barTransform.sizeDelta.x;
+
+        enemyBehaviour.OnDeath += OnDeath;
     }
 
     void Update()
@@ -31,6 +37,11 @@ public class CameraBarToggle : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    void OnDeath()
+    {
+        gameObject.SetActive(false);
     }
 
     void OnEnable()

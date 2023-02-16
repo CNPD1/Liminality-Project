@@ -12,7 +12,10 @@ public class Loop : MonoBehaviour
     void Awake()
     {
         audioSources = GetComponentsInChildren<AudioSource>();
+    }
 
+    void Start()
+    {
         StartCoroutine("Play");
     }
 
