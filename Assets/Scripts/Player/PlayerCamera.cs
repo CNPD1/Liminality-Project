@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
         //Sensitivity
         if(!PlayerPrefs.HasKey("Sensitivity"))
         {
-            PlayerPrefs.SetFloat("Sensitivity", 0.5f);
+            PlayerPrefs.SetFloat("Sensitivity", 1f);
         }
 
         sensitivity = PlayerPrefs.GetFloat("Sensitivity");
@@ -44,8 +44,8 @@ public class PlayerCamera : MonoBehaviour
 
         Vector2 mousePos = new Vector2(0, 0);
 
-        mousePos.x = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensitivity * 100;
-        mousePos.y = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensitivity * 100;
+        mousePos.x = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensitivity * 50;
+        mousePos.y = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensitivity * 50;
 
         camRotation.y += mousePos.x;
         camRotation.x -= mousePos.y;
