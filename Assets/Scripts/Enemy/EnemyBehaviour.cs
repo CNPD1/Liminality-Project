@@ -53,6 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
         cameraBehaviour = FindObjectOfType<CameraBehaviour>();
 
         cameraBehaviour.HitMonster += EnemyDeath;
+        cameraBehaviour.HitPillar += IncreaseDifficulty;
     }
 
     void Update()
@@ -126,6 +127,13 @@ public class EnemyBehaviour : MonoBehaviour
         deathSound.Play();
 
         GetNewPosition();
+    }
+
+    void IncreaseDifficulty(GameObject pillar)
+    {
+        baseSpeed *= 1.2f;
+        chaseSpeed *= 1.2f;
+        hidingTime *= 0.85f;
     }
 
     void GetNewPosition()

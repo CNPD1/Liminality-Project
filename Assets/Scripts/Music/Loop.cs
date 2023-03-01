@@ -29,11 +29,13 @@ public class Loop : MonoBehaviour
 
     IEnumerator Play()
     {
-        currentSource = 1 - currentSource;
-        print(currentSource);
-        audioSources[currentSource].Play();
-        print(audioSources[currentSource].isPlaying);
-        yield return new WaitForSecondsRealtime(stopTime);
-        StartCoroutine("Play");
+        while (true)
+        {
+            currentSource = 1 - currentSource;
+            print(currentSource);
+            audioSources[currentSource].Play();
+            print(audioSources[currentSource].isPlaying);
+            yield return new WaitForSecondsRealtime(stopTime);
+        }
     }
 }

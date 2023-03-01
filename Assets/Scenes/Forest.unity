@@ -2313,7 +2313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5910341297692532524, guid: 688a8b0d16bfc7a409c99bf2200df735, type: 3}
       propertyPath: hidingTime
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5910341297692532524, guid: 688a8b0d16bfc7a409c99bf2200df735, type: 3}
       propertyPath: enemyDetection

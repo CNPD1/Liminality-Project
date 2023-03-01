@@ -28,6 +28,8 @@ public class Interact : MonoBehaviour
 
     void Update()
     {
+        if(Time.timeScale == 0) {  return; }
+
         InteractRaycast();
         InteractHandler();
 

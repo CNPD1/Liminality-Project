@@ -40,7 +40,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if(Cursor.lockState != CursorLockMode.Locked) { return; }
+        if(Cursor.lockState != CursorLockMode.Locked || Time.timeScale == 0) { return; }
 
         Vector2 mousePos = new Vector2(0, 0);
 

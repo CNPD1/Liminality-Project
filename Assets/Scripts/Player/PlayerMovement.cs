@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         footstepSFX = gameObject.transform.Find("Footsteps").gameObject.GetComponent<AudioSource>();
 
         rb.freezeRotation= true;
+        rb.drag = friction;
     }
 
     void Update()
@@ -36,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
         CheckGround();
 
         InputHandler();
-        rb.drag = friction;
-
     }
 
     void FixedUpdate()
