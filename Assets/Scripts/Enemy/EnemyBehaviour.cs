@@ -43,7 +43,6 @@ public class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         navAgent= GetComponent<NavMeshAgent>();
-        state = EnemyState.Hidden;
         navAgent.speed = 0;
         detectionHitbox.radius = chaseRange * (1/transform.localScale.x);
         transform.position = player.transform.position + (Vector3.back * 300);
@@ -131,9 +130,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     void IncreaseDifficulty(GameObject pillar)
     {
-        baseSpeed *= 1.2f;
-        chaseSpeed *= 1.2f;
-        hidingTime *= 0.85f;
+        baseSpeed *= 1.1f;
+        chaseSpeed *= 1.1f;
+        hidingTime *= 0.9f;
     }
 
     void GetNewPosition()
@@ -227,13 +226,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("RealWorld");
     }
 
     IEnumerator Win()
     {
         yield return new WaitForSeconds(2);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("EndScreen");
     }
 }

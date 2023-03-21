@@ -8,6 +8,6 @@ public class ClearData : MonoBehaviour
     public void Clear()
     {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

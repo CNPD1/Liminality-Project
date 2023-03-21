@@ -13,13 +13,13 @@ public class ExitEmail : MonoBehaviour
 
     public void Exit()
     {
-        GameObject email = gameObject.transform.parent.gameObject;
+        GameObject email = gameObject.transform.parent.parent.gameObject;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         interactScript.enabled = true;
 
-        Destroy(email);
+        email.SetActive(false);
     }
 }
